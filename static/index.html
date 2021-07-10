@@ -5,29 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+    />
+
+    <!-- Load polyfills to support older browsers -->
+    <script
+      src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
     <div id="app">
-      {{message}}
+      <b-row class="p-4">
+        <b-col>
+          <b-alert show>{{message}}</b-alert>
+        </b-col>
+      </b-row>
 
-      <p>
-        {{timestamp}}
-      </p>
+      <b-row class="p-4">
+        <b-col>
+          <b-button variant="primary" @click="getUser()">Button</b-button>
 
-      <p>
-        <button @click="getUser()">Get user</button>
-
-        <br />
-        {{user}}
-      </p>
-
-      <p>
-        {{user.name}}
-      </p>
+          <p v-if="showUser">Hello, {{user.name}}</p>
+        </b-col>
+      </b-row>
     </div>
 
     <script>
@@ -38,12 +57,14 @@
           timestamp: `Timestamp ${new Date().toLocaleString()}`,
 
           user: {},
+          showUser: false,
         },
 
         methods: {
           getUser() {
             axios.get('/user').then((response) => {
               this.user = response.data
+              this.showUser = true
             })
           },
         },

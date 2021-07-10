@@ -1,24 +1,34 @@
 # hello-world
 
-## Project setup
+## Run Backend
+
 ```
-yarn install
+go run backend/main.go
 ```
 
-### Compiles and hot-reloads for development
+## Vue
+
+### Project setup
+
 ```
-yarn serve
+npm install
 ```
 
-### Compiles and minifies for production
+#### Compiles and hot-reloads for development
+
 ```
-yarn build
+npm run serve
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+#### Notes
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Install CLI
+  https://v3.vuejs.org/guide/installation.html#cli
+
+- Create project
+  https://cli.vuejs.org/guide/creating-a-project.html#vue-create
+
+- Router
+  https://router.vuejs.org/installation.html#npm
+
+- HTTP client: axios
